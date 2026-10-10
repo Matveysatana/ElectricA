@@ -15,9 +15,9 @@ import { StepsAndFaq } from './components/sections/StepsAndFaq'
 
 export default function App() {
   const location = useLocation()
-  const [loadedPath, setLoadedPath] = useState('')
-  const isLoading = loadedPath !== location.pathname
-  const finishLoading = useCallback(() => setLoadedPath(location.pathname), [location.pathname])
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(false)
+  const isLoading = !hasCompletedIntro
+  const finishLoading = useCallback(() => setHasCompletedIntro(true), [])
   const isPricesPage = ['/price', '/prices'].includes(location.pathname)
 
   useEffect(() => {
@@ -32,14 +32,12 @@ export default function App() {
   }, [isPricesPage])
 
   useEffect(() => {
-    if (isLoading) return
     const targetId = location.hash.replace('#', '')
     if (targetId) window.requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' }))
     else window.scrollTo({ top: 0, behavior: 'auto' })
-  }, [isLoading, location.hash, location.pathname])
+  }, [location.hash, location.pathname])
 
   useEffect(() => {
-    if (isLoading) return
     const targets = document.querySelectorAll('.section-title, .service-row, .about-grid > *, .adv-grid article, .work-card, .qualification-layout > *, .steps li, .faq-layout > *, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
     targets.forEach((target) => target.classList.add('reveal-on-scroll'))
     const observer = new IntersectionObserver((entries) => {
@@ -51,10 +49,10 @@ export default function App() {
     }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' })
     targets.forEach((target) => observer.observe(target))
     return () => observer.disconnect()
-  }, [isLoading, location.pathname])
+  }, [location.pathname])
 
   return <>
-    <Preloader key={location.pathname} onComplete={finishLoading} />
+    <Preloader onComplete={finishLoading} />
     <a className="skip-link" href="#main-content">Перейти к содержанию</a>
     <Header isPricesPage={isPricesPage} />
     <Routes location={location}>

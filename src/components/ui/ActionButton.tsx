@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ArrowDownRight } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 
 type ActionButtonProps = {
   children: ReactNode
@@ -10,6 +10,6 @@ type ActionButtonProps = {
 
 export function ActionButton({ children, onClick, primary = true, type = 'button' }: ActionButtonProps) {
   return <button type={type} className={`button ${primary ? 'button-primary' : 'button-ghost'}`} onClick={onClick}>
-    {children}<ArrowDownRight size={18} />
+    {children}<MessageCircle size={17} strokeWidth={2.2} />
   </button>
 }

@@ -7,7 +7,7 @@ import engineeringConcept from '../../assets/hero-engineering-concept.webp'
 export function Portfolio() {
   const [selected, setSelected] = useState<number | null>(null)
   return <section className="portfolio" id="portfolio"><div className="shell">
-    <SectionLabel light>05 / ВИЗУАЛЬНАЯ БИБЛИОТЕКА</SectionLabel>
+    <SectionLabel light>Работы</SectionLabel>
     <div className="section-title inverse"><h2>Направления и примеры <em>инженерных решений.</em></h2><p>Это место для будущих фотографий с объектов. Названия, площади и результаты не заявляются до получения подтверждённых материалов.</p></div>
     <div className="portfolio-grid">{portfolio.map((item, index) => <button className="work-card" key={item.title} onClick={() => setSelected(index)} aria-label={`Открыть ${item.title}`}>
       <div className={`work-image work-image--${index + 1}`}><img src={engineeringConcept} alt="" /><span>КОНЦЕПТУАЛЬНАЯ<br />ИЛЛЮСТРАЦИЯ</span><b>0{index + 1}</b></div><div><h3>{item.title}</h3><p>{item.task}</p></div>

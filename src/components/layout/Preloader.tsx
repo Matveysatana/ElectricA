@@ -29,8 +29,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
       <div className="preloader-copy"><span>System initialization</span><strong>Alipov engineering</strong></div>
       <div className="preloader-progress"><i /></div>
     </div>
-    <div className="preloader-corner preloader-corner--left">01 / MOSCOW / 55.7558° N</div>
-    <div className="preloader-corner preloader-corner--right">ENG.SYSTEM / READY</div>
+    <div className="preloader-corner preloader-corner--left">МОСКВА</div>
+    <div className="preloader-corner preloader-corner--right">СИСТЕМА ГОТОВА</div>
     <div className="preloader-panel preloader-panel--one" />
     <div className="preloader-panel preloader-panel--two" />
   </div>

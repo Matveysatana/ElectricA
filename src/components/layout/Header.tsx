@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ActionButton } from '../ui/ActionButton'
 import { scrollToSection } from '../../utils/navigation'
@@ -18,23 +18,23 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
   return <header className="header">
     <div className="shell head-inner">
       {isPricesPage ? <Link className="brand" to="/">
-        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК / МОСКВА</span>
+        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК · МОСКВА</span>
       </Link> : <a className="brand" href="#top" onClick={(event) => { event.preventDefault(); goTo('top') }}>
-        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК / МОСКВА</span>
+        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК · МОСКВА</span>
       </a>}
       <nav className="desktop-nav" aria-label="Основная навигация">
         {isPricesPage ? <Link to="/">На главную</Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}</button>)}
         <Link className={isPricesPage ? 'is-current' : ''} to="/prices">Прайс</Link>
       </nav>
       <div className="head-actions">
-        {isPricesPage ? <Link className="header-cta" to="/#contacts">Запросить смету <ArrowUpRight size={16} /></Link> : <button className="header-cta" onClick={() => goTo('contacts')}>Обсудить задачу <ArrowUpRight size={16} /></button>}
+        {isPricesPage ? <Link className="header-cta" to="/#contacts">Запросить смету <MessageCircle size={16} /></Link> : <button className="header-cta" onClick={() => goTo('contacts')}>Обсудить проект <MessageCircle size={16} /></button>}
         <button className="menu-button" aria-label="Открыть меню" aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
       </div>
     </div>
     {isOpen && <nav className="mobile-nav" aria-label="Мобильная навигация">
-      {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную<ArrowUpRight size={20} /></Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}<ArrowUpRight size={20} /></button>)}
-      <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ<ArrowUpRight size={20} /></Link>
-      {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<ArrowUpRight size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')}>Обсудить задачу</ActionButton>}
+      {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную<MessageCircle size={20} /></Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}<MessageCircle size={20} /></button>)}
+      <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ<MessageCircle size={20} /></Link>
+      {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<MessageCircle size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')}>Обсудить задачу</ActionButton>}
     </nav>}
   </header>
 }
