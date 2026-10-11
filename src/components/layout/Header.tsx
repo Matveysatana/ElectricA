@@ -31,10 +31,13 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
         <button className="menu-button" aria-label="Открыть меню" aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
       </div>
     </div>
-    {isOpen && <nav className="mobile-nav" aria-label="Мобильная навигация">
-      {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную<MessageCircle size={20} /></Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}<MessageCircle size={20} /></button>)}
-      <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ<MessageCircle size={20} /></Link>
-      {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<MessageCircle size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')}>Обсудить задачу</ActionButton>}
-    </nav>}
+    {isOpen && <>
+      <button className="mobile-menu-scrim" aria-label="Закрыть меню" onClick={() => setIsOpen(false)} />
+      <nav className="mobile-nav is-open" aria-label="Мобильная навигация">
+        {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную<MessageCircle size={20} /></Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}<MessageCircle size={20} /></button>)}
+        <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ<MessageCircle size={20} /></Link>
+        {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<MessageCircle size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')}>Обсудить задачу</ActionButton>}
+      </nav>
+    </>}
   </header>
 }

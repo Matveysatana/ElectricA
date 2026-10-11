@@ -5,7 +5,6 @@ import { Header } from './components/layout/Header'
 import { Preloader } from './components/layout/Preloader'
 import { PricesPage } from './components/pages/PricesPage'
 import { About } from './components/sections/About'
-import { Advantages } from './components/sections/Advantages'
 import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
 import { Portfolio } from './components/sections/Portfolio'
@@ -41,7 +40,7 @@ export default function App() {
   }, [location.hash, location.pathname])
 
   useEffect(() => {
-    const targets = document.querySelectorAll('.section-title, .service-row, .about-grid > *, .adv-grid article, .work-card, .qualification-layout > *, .steps li, .faq-layout > *, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
+    const targets = document.querySelectorAll('.section-title, .service-row, .about-grid > *, .about-responsibilities button, .work-card, .qualification-layout > *, .faq-layout > *, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
     targets.forEach((target) => target.classList.add('reveal-on-scroll'))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -59,7 +58,7 @@ export default function App() {
     <a className="skip-link" href="#main-content">Перейти к содержанию</a>
     <Header isPricesPage={isPricesPage} />
     <Routes location={location}>
-      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Advantages /><Qualification /><Portfolio /><StepsAndFaq /><Contact /></main>} />
+      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Qualification /><Portfolio /><StepsAndFaq /><Contact /></main>} />
       <Route path="/prices" element={<PricesPage />} />
       <Route path="/price" element={<PricesPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
