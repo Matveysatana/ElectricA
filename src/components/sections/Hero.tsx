@@ -1,7 +1,7 @@
 import { ListChecks } from 'lucide-react'
 import { ActionButton } from '../ui/ActionButton'
 import { scrollToSection } from '../../utils/navigation'
-import heroEngineeringConcept from '../../assets/hero-engineering-concept.webp'
+import heroElectricalPanel from '../../assets/hero-electrical-panel.png'
 
 export function Hero() {
   return <section className="hero" id="top">
@@ -15,8 +15,8 @@ export function Hero() {
         <ul className="hero-facts" aria-label="Ключевые факты"><li>10 лет опыта</li><li>6-й разряд</li><li>Личный контроль</li></ul>
       </div>
       <figure className="hero-visual">
-        <img src={heroEngineeringConcept} alt="Концептуальная иллюстрация организованной кабельной трассы и электрощита" />
-        <figcaption>ИНЖЕНЕРНАЯ СИСТЕМА</figcaption>
+        <img src={heroElectricalPanel} alt="Аккуратно собранный электрический щит" />
+        <figcaption>АККУРАТНАЯ СБОРКА ЩИТА</figcaption>
       </figure>
     </div>
   </section>

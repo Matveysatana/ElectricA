@@ -15,9 +15,12 @@ import { StepsAndFaq } from './components/sections/StepsAndFaq'
 
 export default function App() {
   const location = useLocation()
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(false)
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(() => sessionStorage.getItem('aa-intro-seen') === '1')
   const isLoading = !hasCompletedIntro
-  const finishLoading = useCallback(() => setHasCompletedIntro(true), [])
+  const finishLoading = useCallback(() => {
+    sessionStorage.setItem('aa-intro-seen', '1')
+    setHasCompletedIntro(true)
+  }, [])
   const isPricesPage = ['/price', '/prices'].includes(location.pathname)
 
   useEffect(() => {

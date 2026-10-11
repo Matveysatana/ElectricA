@@ -8,11 +8,11 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const leaveTimer = window.setTimeout(() => setIsLeaving(true), reducedMotion ? 0 : 1500)
+    const leaveTimer = window.setTimeout(() => setIsLeaving(true), reducedMotion ? 0 : 2050)
     const finishTimer = window.setTimeout(() => {
       setIsVisible(false)
       onComplete()
-    }, reducedMotion ? 0 : 2200)
+    }, reducedMotion ? 0 : 2600)
 
     return () => {
       window.clearTimeout(leaveTimer)
@@ -22,16 +22,26 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
   if (!isVisible) return null
 
-  return <div className={`preloader${isLeaving ? ' is-leaving' : ''}`} aria-hidden="true">
+  const breakers = Array.from({ length: 7 }, (_, index) => index)
+
+  return <div className={`preloader electrical-preloader${isLeaving ? ' is-leaving' : ''}`} aria-hidden="true">
     <div className="preloader-grid" />
-    <div className="preloader-center">
-      <div className="preloader-mark">A<span>/</span>A</div>
-      <div className="preloader-copy"><span>System initialization</span><strong>Alipov engineering</strong></div>
-      <div className="preloader-progress"><i /></div>
+    <div className="preloader-center electrical-preloader__center">
+      <div className="electrical-panel" aria-label="Анимация запуска электрического щита">
+        <div className="electrical-panel__label"><span>AA / CONTROL</span><i>СИСТЕМА ПИТАНИЯ</i></div>
+        <div className="electrical-panel__rail">
+          <div className="voltage-relay"><span>РКН</span><b>230 V</b><i /></div>
+          <div className="breaker-bank">
+            {breakers.map((breaker) => <div className="breaker" key={breaker}>
+              <span className="breaker__lever" /><i className="breaker__indicator" /><small>{String(breaker + 1).padStart(2, '0')}</small>
+            </div>)}
+          </div>
+        </div>
+        <div className="electrical-panel__wires"><i /><i /><i /></div>
+      </div>
+      <div className="preloader-copy electrical-preloader__copy"><span>Запуск инженерной системы</span><strong>ПИТАНИЕ ПОДКЛЮЧЕНО</strong></div>
     </div>
-    <div className="preloader-corner preloader-corner--left">МОСКВА</div>
-    <div className="preloader-corner preloader-corner--right">СИСТЕМА ГОТОВА</div>
-    <div className="preloader-panel preloader-panel--one" />
-    <div className="preloader-panel preloader-panel--two" />
+    <div className="preloader-corner preloader-corner--left">МОСКВА · AA ENGINEERING</div>
+    <div className="preloader-corner preloader-corner--right">ПРОВЕРКА ЦЕПИ</div>
   </div>
 }
