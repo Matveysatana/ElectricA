@@ -13,12 +13,12 @@ import { StepsAndFaq } from './components/sections/StepsAndFaq'
 
 export default function App() {
   const location = useLocation()
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(false)
-  const isLoading = !hasCompletedIntro && !['/price', '/prices'].includes(location.pathname)
+  const isPricesPage = ['/price', '/prices'].includes(location.pathname)
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(() => isPricesPage)
+  const isLoading = !hasCompletedIntro
   const finishLoading = useCallback(() => {
     setHasCompletedIntro(true)
   }, [])
-  const isPricesPage = ['/price', '/prices'].includes(location.pathname)
 
   useEffect(() => {
     document.body.classList.toggle('page-is-loading', isLoading)
@@ -27,8 +27,8 @@ export default function App() {
   }, [isLoading])
 
   useEffect(() => {
-    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Electrical Engineering' : 'Electrical Engineering — электромонтаж под ключ в Москве'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Electrical Engineering. Точная стоимость согласуется после оценки задачи.' : 'Electrical Engineering — электромонтаж под ключ в Москве. Инженерный подход к электрике квартир, частных домов и сложных систем.')
+    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Электро Инжиниринг' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж в Москве'
+    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Электро Инжиниринг. Точная стоимость согласуется после оценки задачи.' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж под ключ в Москве.')
   }, [isPricesPage])
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function App() {
   }, [location.pathname])
 
   return <>
-    {!isPricesPage && <Preloader onComplete={finishLoading} />}
+    {!hasCompletedIntro && <Preloader onComplete={finishLoading} />}
     <a className="skip-link" href="#main-content">Перейти к содержанию</a>
     <Header isPricesPage={isPricesPage} />
     <Routes location={location}>

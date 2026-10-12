@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, MessageCircle, X } from 'lucide-react'
+import { ArrowUpRight, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ActionButton } from '../ui/ActionButton'
 import { scrollToSection } from '../../utils/navigation'
@@ -18,16 +18,16 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
   return <header className="header">
     <div className="shell head-inner">
       {isPricesPage ? <Link className="brand" to="/">
-        ELECTRICAL <i>ENGINEERING</i><span>ОСНОВАТЕЛЬ АРТУР АЛИПОВ · МОСКВА</span>
+        ЭЛЕКТРО <i>ИНЖИНИРИНГ</i>
       </Link> : <a className="brand" href="#top" onClick={(event) => { event.preventDefault(); goTo('top') }}>
-        ELECTRICAL <i>ENGINEERING</i><span>ОСНОВАТЕЛЬ АРТУР АЛИПОВ · МОСКВА</span>
+        ЭЛЕКТРО <i>ИНЖИНИРИНГ</i>
       </a>}
       <nav className="desktop-nav" aria-label="Основная навигация">
         {isPricesPage ? <Link to="/">На главную</Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}</button>)}
         <Link className={isPricesPage ? 'is-current' : ''} to="/prices">Прайс</Link>
       </nav>
       <div className="head-actions">
-        {isPricesPage ? <Link className="header-cta" to="/#contacts">Запросить смету <MessageCircle size={16} /></Link> : <button className="header-cta" onClick={() => goTo('contacts')}>Обсудить проект <MessageCircle size={16} /></button>}
+        {isPricesPage ? <Link className="header-cta" to="/#contacts">Запросить смету <FileText size={16} /></Link> : <button className="header-cta" onClick={() => goTo('contacts')}>Обсудить проект <ArrowUpRight size={16} /></button>}
         <button className="menu-button" aria-label="Открыть меню" aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
       </div>
     </div>

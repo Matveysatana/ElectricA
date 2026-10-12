@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react'
 import { CircuitBoard, Lightbulb, PlugZap, SearchCheck, ShieldCheck, SlidersHorizontal } from 'lucide-react'
 
 export const site = {
-  name: 'ELECTRICAL ENGINEERING', city: 'Москва',
+  name: 'ЭЛЕКТРО ИНЖИНИРИНГ', city: 'Москва',
   phone: '', whatsappUrl: '', telegramUrl: '', maxUrl: '', email: '', formEndpoint: '',
   // Заполните до публикации: подтверждённый опыт, формат работы, реквизиты и ссылки на политику.
   confirmedExperience: '', qualification: '', workFormat: '', policyUrl: '',
