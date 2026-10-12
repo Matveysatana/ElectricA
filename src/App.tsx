@@ -8,16 +8,14 @@ import { About } from './components/sections/About'
 import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
 import { Portfolio } from './components/sections/Portfolio'
-import { Qualification } from './components/sections/Qualification'
 import { Services } from './components/sections/Services'
 import { StepsAndFaq } from './components/sections/StepsAndFaq'
 
 export default function App() {
   const location = useLocation()
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(() => sessionStorage.getItem('aa-intro-seen') === '1')
-  const isLoading = !hasCompletedIntro
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(false)
+  const isLoading = !hasCompletedIntro && !['/price', '/prices'].includes(location.pathname)
   const finishLoading = useCallback(() => {
-    sessionStorage.setItem('aa-intro-seen', '1')
     setHasCompletedIntro(true)
   }, [])
   const isPricesPage = ['/price', '/prices'].includes(location.pathname)
@@ -29,8 +27,8 @@ export default function App() {
   }, [isLoading])
 
   useEffect(() => {
-    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Артур Алипов' : 'Артур Алипов — инженер-электрик в Москве'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист электромонтажных работ Артура Алипова. Точная стоимость согласуется после оценки задачи.' : 'Артур Алипов — электромонтаж под ключ в Москве. Инженерный подход к электрике квартир, частных домов и сложных систем.')
+    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Electrical Engineering' : 'Electrical Engineering — электромонтаж под ключ в Москве'
+    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Electrical Engineering. Точная стоимость согласуется после оценки задачи.' : 'Electrical Engineering — электромонтаж под ключ в Москве. Инженерный подход к электрике квартир, частных домов и сложных систем.')
   }, [isPricesPage])
 
   useEffect(() => {
@@ -40,7 +38,7 @@ export default function App() {
   }, [location.hash, location.pathname])
 
   useEffect(() => {
-    const targets = document.querySelectorAll('.section-title, .service-row, .about-grid > *, .about-responsibilities button, .work-card, .qualification-layout > *, .faq-layout > *, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
+    const targets = document.querySelectorAll('.section-title, .service-tile, .about-grid > *, .about-responsibilities button, .work-card, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
     targets.forEach((target) => target.classList.add('reveal-on-scroll'))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -54,11 +52,11 @@ export default function App() {
   }, [location.pathname])
 
   return <>
-    <Preloader onComplete={finishLoading} />
+    {!isPricesPage && <Preloader onComplete={finishLoading} />}
     <a className="skip-link" href="#main-content">Перейти к содержанию</a>
     <Header isPricesPage={isPricesPage} />
     <Routes location={location}>
-      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Qualification /><Portfolio /><StepsAndFaq /><Contact /></main>} />
+      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Portfolio /><StepsAndFaq /><Contact /></main>} />
       <Route path="/prices" element={<PricesPage />} />
       <Route path="/price" element={<PricesPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />

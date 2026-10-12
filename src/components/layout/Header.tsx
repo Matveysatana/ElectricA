@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ActionButton } from '../ui/ActionButton'
 import { scrollToSection } from '../../utils/navigation'
 
-const navigation = [['Услуги', 'services'], ['Обо мне', 'about'], ['Работы', 'portfolio'], ['Этапы', 'steps'], ['Контакты', 'contacts']]
+const navigation = [['Услуги', 'services'], ['Об основателе', 'about'], ['Работы', 'portfolio'], ['Этапы', 'steps'], ['Контакты', 'contacts']]
 
 export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,9 +18,9 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
   return <header className="header">
     <div className="shell head-inner">
       {isPricesPage ? <Link className="brand" to="/">
-        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК · МОСКВА</span>
+        ELECTRICAL <i>ENGINEERING</i><span>ОСНОВАТЕЛЬ АРТУР АЛИПОВ · МОСКВА</span>
       </Link> : <a className="brand" href="#top" onClick={(event) => { event.preventDefault(); goTo('top') }}>
-        АРТУР <i>АЛИПОВ</i><span>ИНЖЕНЕР-ЭЛЕКТРИК · МОСКВА</span>
+        ELECTRICAL <i>ENGINEERING</i><span>ОСНОВАТЕЛЬ АРТУР АЛИПОВ · МОСКВА</span>
       </a>}
       <nav className="desktop-nav" aria-label="Основная навигация">
         {isPricesPage ? <Link to="/">На главную</Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}</button>)}
