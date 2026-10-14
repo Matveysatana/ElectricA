@@ -1,0 +1,192 @@
+/* Electrical Engineering: brand-led hero and a linked service grid. */
+.brand {
+  font-size: 12px;
+  letter-spacing: .035em;
+}
+
+.brand i {
+  color: #147dcc;
+}
+
+.brand span {
+  letter-spacing: .055em;
+}
+
+.footer-brand strong {
+  font-size: 15px;
+  letter-spacing: .025em;
+}
+
+.hero-frame {
+  grid-template-columns: minmax(0, 1.48fr) minmax(300px, .82fr);
+  gap: clamp(34px, 5vw, 84px);
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-content h1 {
+  max-width: 760px;
+  font-size: clamp(56px, 5.9vw, 106px);
+  font-weight: 750;
+  line-height: .96;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.hero-content h1 span,
+.hero-content h1 em {
+  white-space: nowrap;
+}
+
+.hero-visual {
+  min-width: 0;
+  height: min(61vh, 540px);
+  align-self: center;
+}
+
+.services-title {
+  max-width: 1160px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.service-tile {
+  display: flex;
+  min-height: 292px;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 125, 204, .23);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fff, #f4f9fd);
+  color: var(--ink);
+  text-align: left;
+  transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.service-tile:hover {
+  border-color: #147dcc;
+  background: #147dcc;
+  box-shadow: 0 18px 34px rgba(20, 125, 204, .18);
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+.service-tile:focus-visible {
+  outline: 3px solid #147dcc;
+  outline-offset: 4px;
+}
+
+.service-tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #147dcc;
+}
+
+.service-tile__top>span {
+  font: 600 10px/1 'IBM Plex Mono', monospace;
+  letter-spacing: .1em;
+}
+
+.service-tile h3 {
+  max-width: 280px;
+  margin: auto 0 10px;
+  font-size: clamp(21px, 1.7vw, 28px);
+  line-height: 1.04;
+  letter-spacing: -.04em;
+}
+
+.service-tile p {
+  max-width: 340px;
+  margin: 0;
+  color: #5e6970;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.service-tile__action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: #147dcc;
+  font: 600 10px/1 'IBM Plex Mono', monospace;
+  letter-spacing: .04em;
+}
+
+.service-tile:hover .service-tile__top,
+.service-tile:hover p,
+.service-tile:hover .service-tile__action {
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .hero-frame {
+    grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+    gap: 30px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(53px, 6vw, 78px);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .brand {
+    max-width: 210px;
+    font-size: 10px;
+  }
+
+  .brand span {
+    font-size: 7px;
+  }
+
+  .hero-frame {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(42px, 11.5vw, 66px);
+    line-height: .98;
+    letter-spacing: -.025em;
+  }
+
+  .hero-content h1 span,
+  .hero-content h1 em {
+    white-space: normal;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: 245px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-tile {
+    min-height: 240px;
+    padding: 21px;
+  }
+}
+
+/* Conversion detail: the starting step stays clearly legible at every state. */
+.process-section .process-step:first-child .process-step__card b,
+.process-section .process-step:first-child.is-active .process-step__card b {
+  background: #147dcc;
+  color: #fff;
+}
+

@@ -1,0 +1,170 @@
+/* Engineering colour identity: restrained N/PE references applied to existing components. */
+:root {
+  --graphite: #171a1d;
+  --ink: #171a1d;
+  --muted: #737c83;
+  --signal: #147dcc;
+  --engineering-blue: #147dcc;
+  --engineering-blue-soft: #f0f7fc;
+}
+
+.process-section {
+  background: var(--engineering-blue-soft);
+}
+
+.process-section .eyebrow {
+  color: var(--engineering-blue);
+}
+
+.process-section .eyebrow::before {
+  background: var(--engineering-blue);
+}
+
+.steps::before {
+  background: rgba(40, 105, 165, .3);
+}
+
+.steps li {
+  border-color: rgba(40, 105, 165, .13);
+  background: rgba(255, 255, 255, .5);
+}
+
+.steps li::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  content: '';
+  background: var(--engineering-blue);
+  opacity: 0;
+  transform: scaleY(.5);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.steps li:hover,
+.steps li:first-child {
+  border-color: rgba(40, 105, 165, .35);
+  background: var(--white);
+  box-shadow: 0 12px 26px rgba(40, 105, 165, .08);
+  transform: translateX(5px);
+}
+
+.steps li:hover::after,
+.steps li:first-child::after {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.steps b {
+  background: var(--engineering-blue);
+  color: var(--white);
+}
+
+.steps li:first-child b {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.service-index,
+.service-action,
+.service-action svg {
+  color: var(--engineering-blue);
+}
+
+.service-row {
+  border-color: rgba(40, 105, 165, .18);
+}
+
+.service-row:hover {
+  border-color: rgba(40, 105, 165, .5);
+}
+
+.service-row::before {
+  background: var(--engineering-blue);
+}
+
+.service-icon-wrap {
+  color: var(--engineering-blue);
+  background: #eaf2f8;
+}
+
+.service-row:hover .service-icon-wrap {
+  background: var(--engineering-blue);
+  color: var(--white);
+}
+
+.service-row:focus-visible {
+  outline-color: var(--engineering-blue);
+}
+
+.price-tabs button {
+  border-color: rgba(40, 105, 165, .27);
+}
+
+.price-tabs button:hover,
+.price-tabs button.is-active {
+  border-color: var(--engineering-blue);
+  background: var(--engineering-blue);
+  color: var(--white);
+}
+
+.price-tabs button:focus-visible,
+.back-link:focus-visible {
+  outline: 3px solid rgba(40, 105, 165, .45);
+  outline-offset: 3px;
+}
+
+.price-empty>span,
+.price-cta .eyebrow,
+.price-table-wrap th {
+  color: var(--engineering-blue);
+}
+
+.price-table-wrap {
+  border-color: rgba(40, 105, 165, .22);
+}
+
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  position: absolute;
+  top: 28px;
+  left: max(24px, calc((100% - 1360px) / 2));
+  width: min(152px, 35vw);
+  height: 5px;
+  content: '';
+  background: linear-gradient(90deg, var(--engineering-blue), #64b9f0);
+}
+
+.footer-main nav a:hover,
+.footer-contact a:hover {
+  color: #9fc5e3;
+}
+
+.contact .eyebrow::before {
+  background: var(--engineering-blue);
+}
+
+.contact-form input:not([type=checkbox]):focus,
+.contact-form textarea:focus {
+  border-color: var(--engineering-blue);
+  box-shadow: 0 0 0 3px rgba(40, 105, 165, .14);
+}
+
+@media (max-width: 800px) {
+
+  .steps li:hover,
+  .steps li:first-child {
+    transform: none;
+  }
+
+  footer::before {
+    top: 18px;
+    left: 18px;
+  }
+}
+

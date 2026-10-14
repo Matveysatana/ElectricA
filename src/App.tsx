@@ -4,12 +4,12 @@ import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
 import { Preloader } from './components/layout/Preloader'
 import { PricesPage } from './components/pages/PricesPage'
-import { About } from './components/sections/About'
-import { Contact } from './components/sections/Contact'
-import { Hero } from './components/sections/Hero'
-import { Portfolio } from './components/sections/Portfolio'
-import { Services } from './components/sections/Services'
-import { StepsAndFaq } from './components/sections/StepsAndFaq'
+import { About } from './components/sections/About/About'
+import { Contact } from './components/sections/Contact/Contact'
+import { Hero } from './components/sections/Hero/Hero'
+import { Portfolio } from './components/sections/Portfolio/Portfolio'
+import { Services } from './components/sections/Services/Services'
+import { Process } from './components/sections/Process/Process'
 
 export default function App() {
   const location = useLocation()
@@ -56,7 +56,7 @@ export default function App() {
     <a className="skip-link" href="#main-content">Перейти к содержанию</a>
     <Header isPricesPage={isPricesPage} />
     <Routes location={location}>
-      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Portfolio /><StepsAndFaq /><Contact /></main>} />
+      <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Portfolio /><Process /><Contact /></main>} />
       <Route path="/prices" element={<PricesPage />} />
       <Route path="/price" element={<PricesPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />

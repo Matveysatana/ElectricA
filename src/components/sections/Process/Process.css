@@ -1,0 +1,327 @@
+/* Process: the wire is drawn continuously by the reader's scroll position. */
+.process-section {
+  padding: clamp(64px, 7vw, 92px) 0;
+  overflow: visible;
+  background: var(--engineering-blue-soft);
+}
+
+.process-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(290px, .8fr);
+  align-items: start;
+  gap: clamp(54px, 7vw, 116px);
+}
+
+.process-heading {
+  position: sticky;
+  top: 104px;
+  z-index: 2;
+  max-width: 470px;
+  margin: 0;
+  text-align: left;
+}
+
+.process-heading h2 {
+  margin: 15px 0;
+  font-size: clamp(32px, 3.6vw, 50px);
+  letter-spacing: -.045em;
+}
+
+.process-heading p {
+  max-width: 530px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.process-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: 0;
+}
+
+.process-section .steps,
+.process-section .steps::before {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  background: none;
+}
+
+.process-section .steps::before {
+  display: none;
+  content: none;
+}
+
+.process-circuit {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.process-circuit path {
+  fill: none;
+  stroke: var(--engineering-blue);
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--draw-progress));
+  filter: drop-shadow(0 0 3px rgba(40, 105, 165, calc(var(--draw-progress) * .34)));
+  transition: stroke-dashoffset .12s linear, stroke-width .2s ease;
+}
+
+.process-section .process-step {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 154px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.process-section .process-step,
+.process-section .process-step:hover,
+.process-section .process-step:first-child {
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+}
+
+.process-section .process-step::after {
+  display: none;
+}
+
+.process-step__card {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  width: 42%;
+  min-height: 118px;
+  gap: 15px;
+  padding: 18px 20px;
+  border: 1px solid rgba(40, 105, 165, .19);
+  border-radius: 14px;
+  background: rgba(240, 245, 248, .97);
+  color: var(--ink);
+  opacity: 1;
+  transform: none;
+  transition: opacity .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;
+}
+
+.process-step:nth-of-type(odd) .process-step__card {
+  left: 0;
+}
+
+.process-step:nth-of-type(even) .process-step__card {
+  right: 0;
+}
+
+.process-section .process-step__card b {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(40, 105, 165, .13);
+  color: var(--engineering-blue);
+  font: 600 10px 'IBM Plex Mono', monospace;
+}
+
+.process-step__card h3 {
+  margin: 1px 0 7px;
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.28;
+}
+
+.process-step__card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.52;
+}
+
+.process-step__card:hover {
+  border-color: rgba(40, 105, 165, .58);
+  background: #f7fbfd;
+}
+
+.process-step.is-passed .process-step__card {
+  background: #f2f7fa;
+}
+
+.process-step.is-active .process-step__card {
+  border-color: rgba(40, 105, 165, .72);
+  background: #f8fcff;
+  box-shadow: 0 0 0 4px rgba(40, 105, 165, .06);
+}
+
+.process-step.is-active .process-step__card b {
+  background: var(--engineering-blue);
+  color: var(--white);
+  transform: scale(1.08);
+  box-shadow: 0 0 0 5px rgba(40, 105, 165, .1);
+}
+
+@media (max-width: 860px) {
+  .process-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .process-heading {
+    position: static;
+    order: -1;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .process-heading h2 {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  .process-diagram {
+    max-width: none;
+    margin: 0;
+    padding-left: 30px;
+  }
+
+  .process-section .steps {
+    display: grid;
+    gap: 13px;
+  }
+
+  .process-circuit {
+    display: none;
+  }
+
+  .process-diagram::before,
+  .process-diagram::after {
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 7px;
+    width: 2px;
+    content: '';
+    transform-origin: top;
+  }
+
+  .process-diagram::before {
+    background: rgba(40, 105, 165, .18);
+  }
+
+  .process-diagram::after {
+    background: var(--engineering-blue);
+    box-shadow: 0 0 7px rgba(40, 105, 165, .4);
+    transform: scaleY(var(--step-progress));
+    transition: transform .1s linear;
+  }
+
+  .process-section .process-step {
+    height: auto;
+    min-height: 0;
+  }
+
+  .process-step__card,
+  .process-step:nth-of-type(odd) .process-step__card,
+  .process-step:nth-of-type(even) .process-step__card {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .process-circuit path,
+  .process-step__card {
+    transition-duration: .01ms;
+  }
+}
+
+/* Mobile navigation: a contained sheet with an inert, dimmed page behind it. */
+@media (max-width: 800px) {
+  .header {
+    isolation: isolate;
+  }
+
+  .head-inner {
+    position: relative;
+    z-index: 1001;
+  }
+
+  .mobile-menu-scrim {
+    position: absolute;
+    z-index: 999;
+    top: 64px;
+    right: 0;
+    left: 0;
+    display: block;
+    height: calc(100svh - 64px);
+    border: 0;
+    background: rgba(14, 20, 25, .52);
+    backdrop-filter: blur(2px);
+    animation: mobile-menu-scrim-in .28s ease both;
+  }
+
+  .mobile-nav {
+    z-index: 1000;
+    overflow: hidden;
+    max-height: calc(100svh - 64px);
+    animation: mobile-menu-in .34s cubic-bezier(.2, .8, .2, 1) both;
+  }
+}
+
+@keyframes mobile-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-menu-scrim-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mobile-menu-scrim,
+  .mobile-nav {
+    animation-duration: .01ms;
+  }
+}
+

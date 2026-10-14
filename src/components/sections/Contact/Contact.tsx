@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { MessageCircle, Phone, Send } from 'lucide-react'
-import { site } from '../../content'
-import { ActionButton } from '../ui/ActionButton'
-import { SectionLabel } from '../ui/SectionLabel'
+import { site } from '../../../content'
+import { ActionButton } from '../../ui/ActionButton'
+import { SectionLabel } from '../../ui/SectionLabel'
 
 type FormFields = { name: string; phone: string; comment: string; consent: boolean }
 

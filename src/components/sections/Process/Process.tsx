@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { steps } from '../../content'
-import { SectionLabel } from '../ui/SectionLabel'
+import { steps } from '../../../content'
+import { SectionLabel } from '../../ui/SectionLabel'
 
 const circuitPaths = [
   'M403 82H560V168H920V184',
@@ -12,7 +12,7 @@ const circuitPaths = [
   'M403 1066H560V1152H920V1168'
 ]
 
-export function StepsAndFaq() {
+export function Process() {
   const [stepProgress, setStepProgress] = useState(0)
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { BadgeCheck, FileText, ShieldCheck, UserRoundCheck } from 'lucide-react'
-import { SectionLabel } from '../ui/SectionLabel'
-import certificatePreview from '../../assets/qualification-certificate-preview.png'
-import { scrollToSection } from '../../utils/navigation'
+import { SectionLabel } from '../../ui/SectionLabel'
+import certificatePreview from '../../../assets/qualification-certificate-preview.png'
+import { scrollToSection } from '../../../utils/navigation'
 
 export function Qualification() {
   return <section className="qualification section" id="qualification"><div className="shell qualification-layout">

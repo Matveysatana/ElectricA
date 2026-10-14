@@ -1,0 +1,246 @@
+/* Specialist section: responsibility is now a compact working system, not a repeated feature grid. */
+.service-row:hover .service-icon-wrap {
+  color: var(--white);
+}
+
+.service-row:hover .service-icon {
+  color: currentColor;
+}
+
+.about {
+  background: #1d2124;
+}
+
+.about-grid {
+  align-items: stretch;
+  gap: clamp(52px, 7vw, 120px);
+}
+
+.about-visual {
+  min-height: 100%;
+  background: radial-gradient(circle at 72% 16%, rgba(40, 105, 165, .24), transparent 30%), linear-gradient(150deg, #111518, #2a3034);
+}
+
+.about-visual::after {
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  width: 72px;
+  height: 4px;
+  content: '';
+  background: linear-gradient(90deg, var(--engineering-blue), #64b9f0);
+}
+
+.about h2 {
+  max-width: 650px;
+  margin-bottom: 25px;
+}
+
+.about-copy {
+  max-width: 610px;
+  margin-bottom: 0;
+}
+
+.about-responsibilities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 34px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: rgba(255, 255, 255, .16);
+}
+
+.about-responsibilities article {
+  min-height: 218px;
+  padding: 20px;
+  background: #22272a;
+  transition: background .28s ease, transform .28s ease;
+}
+
+.about-responsibilities article:hover {
+  position: relative;
+  z-index: 1;
+  background: #2a3034;
+  transform: translateY(-5px);
+}
+
+.about-responsibilities__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #a7c9e6;
+}
+
+.about-responsibilities__head span {
+  margin-right: auto;
+  color: var(--signal);
+  font: 600 10px/1 'IBM Plex Mono', monospace;
+  letter-spacing: .08em;
+}
+
+.about-responsibilities__head svg:last-child {
+  color: rgba(255, 255, 255, .38);
+}
+
+.about-responsibilities h3 {
+  margin: 38px 0 10px;
+  color: var(--white);
+  font-size: 16px;
+  letter-spacing: -.025em;
+}
+
+.about-responsibilities p {
+  margin: 0;
+  color: rgba(255, 255, 255, .63);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.about-footer-note {
+  margin: 18px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .52);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 1000px) {
+  .about-responsibilities {
+    grid-template-columns: 1fr;
+  }
+
+  .about-responsibilities article {
+    min-height: 0;
+  }
+
+  .about-responsibilities h3 {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .about-responsibilities {
+    margin-top: 26px;
+  }
+
+  .about-visual::after {
+    right: 15px;
+    bottom: 16px;
+  }
+}
+
+/* Conversion paths: specialist principles and qualification facts lead into the application form. */
+.about-responsibilities button {
+  width: 100%;
+  min-height: 218px;
+  padding: 20px;
+  border: 0;
+  background: #22272a;
+  color: inherit;
+  text-align: left;
+  transition: background .28s ease, transform .28s ease, box-shadow .28s ease;
+}
+
+.about-responsibilities button:hover {
+  position: relative;
+  z-index: 1;
+  background: #2a3034;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .16);
+  transform: translateY(-5px);
+}
+
+.about-responsibilities button:focus-visible {
+  position: relative;
+  z-index: 2;
+  outline: 3px solid var(--signal);
+  outline-offset: -3px;
+}
+
+.about-responsibilities article {
+  display: contents;
+}
+
+.qualification-facts>button {
+  display: flex;
+  width: 100%;
+  min-height: 142px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid rgba(16, 18, 20, .22);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--ink);
+  text-align: left;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.qualification-facts>button:hover {
+  border-color: rgba(40, 105, 165, .52);
+  box-shadow: 0 14px 24px rgba(40, 105, 165, .11);
+  transform: translateY(-4px);
+}
+
+.qualification-facts>button:focus-visible {
+  outline: 3px solid rgba(40, 105, 165, .42);
+  outline-offset: 3px;
+}
+
+.qualification-facts>button svg {
+  color: var(--engineering-blue);
+}
+
+.qualification-facts>button strong {
+  font-size: 30px;
+  letter-spacing: -.05em;
+}
+
+.qualification-facts>button span {
+  color: #4b514d;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.document-preview {
+  cursor: zoom-in;
+}
+
+.document-preview img {
+  transform: scale(1);
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), filter .45s ease;
+}
+
+.document-preview:hover img,
+.document-preview:focus-visible img {
+  transform: scale(1.055);
+  filter: saturate(.96) contrast(1.07);
+}
+
+.document-preview:focus-visible {
+  outline: 3px solid var(--engineering-blue);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1000px) {
+  .about-responsibilities button {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .qualification-facts>button {
+    min-height: 112px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-responsibilities button,
+  .qualification-facts>button,
+  .document-preview img {
+    transition: none;
+  }
+}
+

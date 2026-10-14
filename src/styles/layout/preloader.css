@@ -1,0 +1,384 @@
+/* Electrical system preloader: compact, CSS-only and easy to replace with a detailed visual later. */
+.electrical-preloader {
+  background: #121416;
+  transition: background .45s ease;
+}
+
+.electrical-preloader::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: radial-gradient(circle at 50% 48%, rgba(20, 125, 204, .15), transparent 30%);
+  opacity: 0;
+  animation: panel-ambient 1.8s ease .45s forwards;
+}
+
+.electrical-preloader .preloader-grid {
+  opacity: .38;
+  animation: none;
+}
+
+.electrical-preloader__center {
+  z-index: 3;
+  gap: 22px;
+}
+
+.electrical-panel {
+  position: relative;
+  width: min(470px, 82vw);
+  padding: 18px 20px 21px;
+  overflow: hidden;
+  border: 1px solid rgba(222, 226, 224, .46);
+  border-radius: 8px;
+  background: linear-gradient(145deg, #737a7c, #42484a 48%, #2e3335);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 255, 255, .32);
+  opacity: 0;
+  transform: translateY(14px) scale(.96);
+  animation: panel-arrive .45s cubic-bezier(.2, .8, .2, 1) .16s forwards;
+}
+
+.electrical-panel::before {
+  position: absolute;
+  inset: 8px;
+  content: '';
+  border: 1px solid rgba(8, 10, 11, .4);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.electrical-panel__label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+  color: #eef0eb;
+  font: 600 8px/1 'IBM Plex Mono', monospace;
+  letter-spacing: .12em;
+}
+
+.electrical-panel__label i {
+  color: rgba(238, 240, 235, .62);
+  font-style: normal;
+  font-size: 7px;
+}
+
+.electrical-panel__rail {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid #1d2122;
+  border-radius: 3px;
+  background: linear-gradient(#202527 0 25%, #b4b8b6 25% 34%, #2a3031 34%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .11);
+}
+
+.voltage-relay {
+  display: grid;
+  width: 74px;
+  min-width: 74px;
+  align-content: center;
+  justify-items: center;
+  gap: 7px;
+  padding: 9px 5px;
+  border: 1px solid #9fa5a3;
+  border-radius: 3px;
+  background: #e4e6e1;
+  color: #232829;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, .3);
+  font: 700 8px/1 'IBM Plex Mono', monospace;
+}
+
+.voltage-relay b {
+  padding: 4px 6px;
+  border-radius: 1px;
+  background: #252b2a;
+  color: #71c7fa;
+  font-size: 10px;
+  letter-spacing: .06em;
+}
+
+.voltage-relay i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8c9592;
+  box-shadow: 0 0 0 transparent;
+  animation: relay-ready .35s ease 1.66s forwards;
+}
+
+.breaker-bank {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.breaker {
+  position: relative;
+  display: grid;
+  min-height: 94px;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 7px 2px 8px;
+  border: 1px solid #aeb3b0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #d8dad5, #f4f5f0 48%, #c8ccc8);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, .25);
+}
+
+.breaker::before {
+  width: 65%;
+  height: 3px;
+  content: '';
+  border-radius: 2px;
+  background: #b8bcb8;
+}
+
+.breaker__lever {
+  position: relative;
+  width: 58%;
+  height: 29px;
+  border: 1px solid #343a3a;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #1e2323, #505856, #1d2221);
+  transform: translateY(7px);
+  transform-origin: center;
+  transition: transform .16s cubic-bezier(.2, .8, .2, 1);
+}
+
+.breaker__lever::after {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  bottom: 4px;
+  left: 3px;
+  content: '';
+  border-radius: 1px;
+  background: #707875;
+}
+
+.breaker__indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8b9190;
+  box-shadow: 0 0 0 transparent;
+}
+
+.breaker small {
+  color: #424846;
+  font: 600 6px/1 'IBM Plex Mono', monospace;
+}
+
+.breaker:nth-child(1) .breaker__lever {
+  animation: breaker-on .25s ease .72s forwards;
+}
+
+.breaker:nth-child(1) .breaker__indicator {
+  animation: indicator-on .3s ease .78s forwards;
+}
+
+.breaker:nth-child(2) .breaker__lever {
+  animation: breaker-on .25s ease .9s forwards;
+}
+
+.breaker:nth-child(2) .breaker__indicator {
+  animation: indicator-on .3s ease .96s forwards;
+}
+
+.breaker:nth-child(3) .breaker__lever {
+  animation: breaker-on .25s ease 1.08s forwards;
+}
+
+.breaker:nth-child(3) .breaker__indicator {
+  animation: indicator-on .3s ease 1.14s forwards;
+}
+
+.breaker:nth-child(4) .breaker__lever {
+  animation: breaker-on .25s ease 1.26s forwards;
+}
+
+.breaker:nth-child(4) .breaker__indicator {
+  animation: indicator-on .3s ease 1.32s forwards;
+}
+
+.breaker:nth-child(5) .breaker__lever {
+  animation: breaker-on .25s ease 1.44s forwards;
+}
+
+.breaker:nth-child(5) .breaker__indicator {
+  animation: indicator-on .3s ease 1.5s forwards;
+}
+
+.breaker:nth-child(6) .breaker__lever {
+  animation: breaker-on .25s ease 1.62s forwards;
+}
+
+.breaker:nth-child(6) .breaker__indicator {
+  animation: indicator-on .3s ease 1.68s forwards;
+}
+
+.breaker:nth-child(7) .breaker__lever {
+  animation: breaker-on .25s ease 1.8s forwards;
+}
+
+.breaker:nth-child(7) .breaker__indicator {
+  animation: indicator-on .3s ease 1.86s forwards;
+}
+
+.electrical-panel__wires {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 7px;
+  height: 12px;
+  padding: 0 24px;
+  overflow: hidden;
+}
+
+.electrical-panel__wires i {
+  width: 4px;
+  border-radius: 0 0 4px 4px;
+  background: #0d5f9e;
+}
+
+.electrical-panel__wires i:nth-child(2) {
+  background: #3674ac;
+}
+
+.electrical-panel__wires i:nth-child(3) {
+  background: #71c7fa;
+}
+
+.electrical-preloader__copy {
+  opacity: 0;
+  animation: copy-arrive .3s ease .5s forwards;
+}
+
+.electrical-preloader__copy strong {
+  color: #71c7fa;
+}
+
+.electrical-preloader.is-leaving {
+  background: #eff1ed;
+}
+
+.electrical-preloader.is-leaving .electrical-panel,
+.electrical-preloader.is-leaving .electrical-preloader__copy {
+  opacity: 0;
+  transform: translateY(-8px) scale(1.02);
+  transition: opacity .32s ease, transform .32s ease;
+}
+
+.electrical-preloader.is-leaving .preloader-grid,
+.electrical-preloader.is-leaving .preloader-corner {
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+@keyframes panel-arrive {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes copy-arrive {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breaker-on {
+  to {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes indicator-on {
+  45% {
+    background: #9ad8fb;
+    box-shadow: 0 0 12px 4px rgba(20, 125, 204, .68);
+  }
+
+  100% {
+    background: #147dcc;
+    box-shadow: 0 0 6px rgba(20, 125, 204, .48);
+  }
+}
+
+@keyframes relay-ready {
+  to {
+    background: #147dcc;
+    box-shadow: 0 0 8px rgba(20, 125, 204, .6);
+  }
+}
+
+@keyframes panel-ambient {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .electrical-panel {
+    padding: 14px;
+  }
+
+  .electrical-panel__rail {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .voltage-relay {
+    width: 59px;
+    min-width: 59px;
+  }
+
+  .breaker-bank {
+    gap: 3px;
+  }
+
+  .breaker {
+    min-height: 77px;
+  }
+
+  .breaker__lever {
+    height: 24px;
+  }
+
+  .electrical-panel__label i {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .electrical-preloader *,
+  .electrical-preloader::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .electrical-panel,
+  .electrical-preloader__copy {
+    opacity: 1;
+    transform: none;
+  }
+
+  .breaker__lever {
+    transform: translateY(-7px);
+  }
+
+  .breaker__indicator,
+  .voltage-relay i {
+    background: #147dcc;
+  }
+}
+

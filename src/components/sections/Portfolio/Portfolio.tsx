@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
-import { portfolio } from '../../content'
-import { SectionLabel } from '../ui/SectionLabel'
-import engineeringConcept from '../../assets/hero-engineering-concept.webp'
+import { portfolio } from '../../../content'
+import { SectionLabel } from '../../ui/SectionLabel'
+import engineeringConcept from '../../../assets/hero-engineering-concept.webp'
 
 export function Portfolio() {
   const [selected, setSelected] = useState<number | null>(null)

@@ -1,8 +1,8 @@
 import { ArrowRight, ClipboardCheck, FileText, Network, UsersRound } from 'lucide-react'
-import { SectionLabel } from '../ui/SectionLabel'
-import arturPortrait from '../../assets/artur-alipov-cutout.webp'
-import certificatePreview from '../../assets/qualification-certificate-preview.png'
-import { scrollToSection } from '../../utils/navigation'
+import { SectionLabel } from '../../ui/SectionLabel'
+import arturPortrait from '../../../assets/artur-alipov-cutout.webp'
+import certificatePreview from '../../../assets/qualification-certificate-preview.png'
+import { scrollToSection } from '../../../utils/navigation'
 
 export function About() {
   const responsibilities = [

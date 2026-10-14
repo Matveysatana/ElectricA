@@ -1,4 +1,4 @@
-import { SectionLabel } from '../ui/SectionLabel'
+import { SectionLabel } from '../../ui/SectionLabel'
 
 const advantages = [
   ['control', 'Личный контроль', 'Артур лично присутствует на объекте и участвует в ключевых этапах.'],
