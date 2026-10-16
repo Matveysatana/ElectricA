@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { CircuitBoard, Lightbulb, PlugZap, SearchCheck, ShieldCheck, SlidersHorizontal } from 'lucide-react'
+import { CircuitBoard, Lightbulb, PlugZap, SearchCheck, ShieldAlert, SlidersHorizontal } from 'lucide-react'
 
 export const site = {
   name: 'ЭЛЕКТРО ИНЖИНИРИНГ', city: 'Москва',
@@ -12,19 +12,18 @@ export const site = {
 export type Service = { title: string; description: string; icon: LucideIcon }
 export const services: Service[] = [
   { title: 'Электромонтаж под ключ', description: 'Выполняю полную электрику в квартире или доме: от согласования задач до готовой системы.', icon: CircuitBoard },
+  { title: 'Аварийный электромонтаж', description: 'Выезжаю на срочные неисправности: розетки, освещение, автоматы и электрощиты. Подходит для задачи «электрик на час».', icon: ShieldAlert },
   { title: 'Полная замена электропроводки', description: 'Обновляю устаревшую проводку с продуманной логикой будущего пространства.', icon: PlugZap },
   { title: 'Сборка и монтаж электрощитов', description: 'Собираю и монтирую щит как центр управления всей системой.', icon: SlidersHorizontal },
   { title: 'Слаботочные инженерные системы', description: 'Подготавливаю трассы и точки для систем, работающих вместе с электрикой.', icon: SearchCheck },
-  { title: 'Системы умного дома', description: 'Подготавливаю электрику под сценарии автоматизации после обсуждения проекта.', icon: Lightbulb },
-  { title: 'Электрика в частных домах', description: 'Выполняю работы для частных домов с учётом особенностей объекта и инженерных задач.', icon: ShieldCheck }
+  { title: 'Системы умного дома', description: 'Подготавливаю электрику под сценарии автоматизации после обсуждения проекта.', icon: Lightbulb }
 ]
 
-export const portfolio = [
-  { title: 'Направления инженерных решений', task: 'Визуальные материалы будут заменены реальными фотографиями после согласования с заказчиком.' },
-  { title: 'Электрика в частном доме', task: 'Визуальные материалы будут заменены реальными фотографиями после согласования с заказчиком.' },
-  { title: 'Электромонтаж в квартире', task: 'Визуальные материалы будут заменены реальными фотографиями после согласования с заказчиком.' },
-  { title: 'Сборка электрощита', task: 'Визуальные материалы будут заменены реальными фотографиями после согласования с заказчиком.' }
-]
+export const directions = Array.from({ length: 12 }, (_, index) => ({
+  number: String(index + 1).padStart(2, '0'),
+  title: `Направление работ ${String(index + 1).padStart(2, '0')}`,
+  task: 'Название, описание и материалы будут добавлены после согласования с заказчиком.'
+}))
 
 export const steps = [
   { number: '01', title: 'Звонок или заявка', description: 'Собираю исходные данные: объект, задачу, сроки и удобный способ связи.' },

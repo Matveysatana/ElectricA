@@ -4,6 +4,7 @@ import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
 import { Preloader } from './components/layout/Preloader'
 import { PricesPage } from './components/pages/PricesPage'
+import { CaseDetailsPage } from './components/pages/CaseDetailsPage'
 import { About } from './components/sections/About/About'
 import { Contact } from './components/sections/Contact/Contact'
 import { Hero } from './components/sections/Hero/Hero'
@@ -14,7 +15,8 @@ import { Process } from './components/sections/Process/Process'
 export default function App() {
   const location = useLocation()
   const isPricesPage = ['/price', '/prices'].includes(location.pathname)
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(() => isPricesPage)
+  const isInnerPage = isPricesPage || location.pathname.startsWith('/cases/')
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(() => isInnerPage)
   const isLoading = !hasCompletedIntro
   const finishLoading = useCallback(() => {
     setHasCompletedIntro(true)
@@ -27,9 +29,9 @@ export default function App() {
   }, [isLoading])
 
   useEffect(() => {
-    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Электро Инжиниринг' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж в Москве'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Электро Инжиниринг. Точная стоимость согласуется после оценки задачи.' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж под ключ в Москве.')
-  }, [isPricesPage])
+    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Электро Инжиниринг' : isInnerPage ? 'Карточка объекта — Электро Инжиниринг' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж в Москве'
+    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Электро Инжиниринг. Точная стоимость согласуется после оценки задачи.' : isInnerPage ? 'Карточка будущего объекта Электро Инжиниринг.' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж под ключ в Москве.')
+  }, [isInnerPage, isPricesPage])
 
   useEffect(() => {
     const targetId = location.hash.replace('#', '')
@@ -38,7 +40,7 @@ export default function App() {
   }, [location.hash, location.pathname])
 
   useEffect(() => {
-    const targets = document.querySelectorAll('.section-title, .service-tile, .about-grid > *, .about-responsibilities button, .work-card, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
+    const targets = document.querySelectorAll('.section-title, .service-tile, .about-grid > *, .about-responsibilities button, .direction-card, .contact-grid > *, .price-tabs, .price-table-wrap, .price-cta')
     targets.forEach((target) => target.classList.add('reveal-on-scroll'))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -59,6 +61,7 @@ export default function App() {
       <Route path="/" element={<main id="main-content"><Hero /><Services /><About /><Portfolio /><Process /><Contact /></main>} />
       <Route path="/prices" element={<PricesPage />} />
       <Route path="/price" element={<PricesPage />} />
+      <Route path="/cases/:id" element={<CaseDetailsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <Footer />
