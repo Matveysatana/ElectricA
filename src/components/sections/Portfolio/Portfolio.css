@@ -28,6 +28,7 @@
 .direction-card__copy > span { display: block; margin-top: 20px; color: var(--signal); font: 500 10px/1.2 'IBM Plex Mono', monospace; letter-spacing: .04em; }
 
 @media (max-width: 700px) {
-  .direction-card { width: min(82vw, 340px); }
+  .directions-viewport { margin: 0; }
+  .direction-card { width: calc(100vw - 56px); max-width: none; }
   .direction-card__image { height: 220px; }
 }

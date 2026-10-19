@@ -244,3 +244,232 @@
   }
 }
 
+/* Founder: a quiet proof block rather than a set of promotional cards. */
+.about.about--founder {
+  background: #f6fafc;
+  color: #172127;
+}
+
+.about--founder .about-grid {
+  align-items: center;
+  grid-template-columns: minmax(300px, .95fr) minmax(0, 1.05fr);
+  gap: clamp(48px, 7vw, 128px);
+}
+
+.about--founder .about-visual {
+  display: grid;
+  min-height: 520px;
+  place-items: end center;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.about--founder .about-grid-mark,
+.about--founder .about-visual::after {
+  display: none;
+}
+
+.about--founder .about-visual img {
+  width: min(108%, 500px);
+  height: auto;
+  max-width: none;
+  transform: none;
+}
+
+.about--founder .about-visual b {
+  right: 0;
+  bottom: 4px;
+}
+
+.about--founder .about-content .eyebrow {
+  color: #147dcc;
+}
+
+.about--founder h2 {
+  max-width: 620px;
+  color: #172127;
+}
+
+.about--founder h2 em {
+  color: #147dcc;
+}
+
+.about--founder .about-copy {
+  max-width: 625px;
+  color: #53636d;
+}
+
+.about--founder .about-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 31px;
+  border-top: 1px solid rgba(23, 33, 39, .16);
+  border-bottom: 1px solid rgba(23, 33, 39, .16);
+}
+
+.about--founder .about-facts span {
+  flex: 1 1 190px;
+  padding: 14px 18px 14px 0;
+  color: #172127;
+  font: 600 10px/1.4 'IBM Plex Mono', monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.about--founder .about-facts span+span {
+  padding-left: 18px;
+  border-left: 1px solid rgba(23, 33, 39, .16);
+}
+
+.about--founder .about-document {
+  max-width: 590px;
+  margin-top: 24px;
+  border-color: rgba(20, 125, 204, .2);
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(23, 33, 39, .08);
+}
+
+.about--founder .about-document:hover {
+  border-color: #147dcc;
+  background: #147dcc;
+  box-shadow: 0 16px 30px rgba(20, 125, 204, .2);
+}
+
+.about--founder .about-document__copy {
+  color: #147dcc;
+}
+
+.about--founder .about-document__copy>span {
+  color: #172127;
+}
+
+.about--founder .about-document__copy small {
+  color: #667780;
+}
+
+.about--founder .about-document__action {
+  color: #147dcc;
+}
+
+.about--founder .about-document:hover .about-document__copy,
+.about--founder .about-document:hover .about-document__action,
+.about--founder .about-document:hover .about-document__copy>span,
+.about--founder .about-document:hover .about-document__copy small {
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .about--founder .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about--founder .about-visual {
+    min-height: 304px;
+    max-height: 304px;
+    overflow: hidden;
+    border: 1px solid rgba(20, 125, 204, .16);
+    border-radius: 18px;
+    background: #eef4f7;
+  }
+
+  .about--founder .about-visual img {
+    width: min(88%, 300px);
+  }
+
+  .about--founder .about-visual b {
+    right: 18px;
+    bottom: 17px;
+    font-size: clamp(42px, 13vw, 64px);
+  }
+
+  .about--founder .about-facts {
+    margin-top: 26px;
+  }
+
+  .about--founder .about-facts span {
+    flex-basis: 100%;
+    padding: 12px 0;
+  }
+
+  .about--founder .about-facts span+span {
+    padding-left: 0;
+    border-top: 1px solid rgba(23, 33, 39, .16);
+    border-left: 0;
+  }
+
+  .about--founder .about-document {
+    margin-top: 22px;
+  }
+}
+
+/* Calm blue ground, with the engineering grid reserved for the portrait only. */
+.about.about--founder {
+  background: #fff;
+}
+
+.about--founder .about-visual {
+  position: relative;
+  isolation: isolate;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 33, 39, .18);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(23, 33, 39, .14);
+}
+
+.about--founder .about-visual::before,
+.about--founder .about-visual::after {
+  display: none;
+}
+
+.about--founder .about-grid-mark {
+  display: block;
+  z-index: 0;
+  background-image: linear-gradient(rgba(23, 33, 39, .13) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 33, 39, .13) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: none;
+}
+
+.about--founder .about-visual img {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: 95%;
+  max-width: 95%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.about--founder .about-visual b {
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(23, 33, 39, .35);
+}
+
+.about--founder .about-visual b span {
+  color: #147dcc;
+}
+
+@media (max-width: 800px) {
+  .about--founder .about-visual {
+    min-height: 290px;
+    max-height: 290px;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .about--founder .about-grid-mark {
+    background-size: 44px 44px;
+  }
+
+  .about--founder .about-visual img {
+    width: auto;
+    height: 100%;
+    max-width: 82%;
+  }
+}

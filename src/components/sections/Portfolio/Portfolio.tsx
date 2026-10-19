@@ -11,6 +11,8 @@ export function Portfolio() {
   const cardRef = useRef<HTMLButtonElement>(null)
   const stepRef = useRef(0)
   const isPositioning = useRef(false)
+  const isAnimating = useRef(false)
+  const animationTimer = useRef<number | null>(null)
   const cards = useMemo(() => [...directions, ...directions, ...directions], [])
 
   const positionInMiddle = useCallback(() => {
@@ -20,8 +22,11 @@ export function Portfolio() {
   }, [])
   const move = useCallback((direction: -1 | 1) => {
     const viewport = viewportRef.current
-    if (!viewport || !stepRef.current) return
+    if (!viewport || !stepRef.current || isAnimating.current) return
+    isAnimating.current = true
     viewport.scrollBy({ left: stepRef.current * direction, behavior: 'smooth' })
+    if (animationTimer.current) window.clearTimeout(animationTimer.current)
+    animationTimer.current = window.setTimeout(() => { isAnimating.current = false }, 520)
   }, [])
   const maintainLoop = () => {
     const viewport = viewportRef.current
@@ -52,7 +57,7 @@ export function Portfolio() {
 
   useEffect(() => {
     const timer = window.setInterval(() => move(1), 15000)
-    return () => window.clearInterval(timer)
+    return () => { window.clearInterval(timer); if (animationTimer.current) window.clearTimeout(animationTimer.current) }
   }, [move])
 
   return <section className="portfolio" id="portfolio"><div className="shell">

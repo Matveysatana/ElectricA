@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ClipboardPenLine, FileText, Menu, MessageCircle, X } from 'lucide-react'
+import { ClipboardPenLine, FileText, Menu, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ActionButton } from '../ui/ActionButton'
 import { scrollToSection } from '../../utils/navigation'
@@ -34,9 +34,9 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
     {isOpen && <>
       <button className="mobile-menu-scrim" aria-label="Закрыть меню" onClick={() => setIsOpen(false)} />
       <nav className="mobile-nav is-open" aria-label="Мобильная навигация">
-        {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную<MessageCircle size={20} /></Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}<MessageCircle size={20} /></button>)}
-        <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ<MessageCircle size={20} /></Link>
-        {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<MessageCircle size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')}>Обсудить задачу</ActionButton>}
+        {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную</Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}</button>)}
+        <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ</Link>
+        {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<FileText size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')} icon={<ClipboardPenLine size={17} />}>Обсудить проект</ActionButton>}
       </nav>
     </>}
   </header>

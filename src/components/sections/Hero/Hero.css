@@ -87,3 +87,12 @@
     border-radius: 18px;
   }
 }
+
+@media (max-width: 390px) {
+  .hero-content h1 {
+    font-size: 34px;
+    letter-spacing: -.05em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
