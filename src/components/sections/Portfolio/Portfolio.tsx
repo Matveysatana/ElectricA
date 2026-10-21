@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { directions } from '../../../content'
+import { caseStudies as directions } from '../../../caseStudies'
 import { SectionLabel } from '../../ui/SectionLabel'
 import engineeringConcept from '../../../assets/hero-engineering-concept.webp'
 
@@ -62,10 +62,10 @@ export function Portfolio() {
 
   return <section className="portfolio" id="portfolio"><div className="shell">
     <SectionLabel light>Направления работ</SectionLabel>
-    <div className="section-title inverse directions-heading"><div><h2>Инженерные решения <em>для разных задач.</em></h2><p>Здесь появятся согласованные направления и реальные материалы с объектов. Пока карточки оставлены как аккуратные заглушки.</p></div></div>
+    <div className="section-title inverse directions-heading"><div><h2>Инженерные решения <em>для разных задач.</em></h2><p>Первый кейс — демонстрация того, как будут выглядеть подробные проекты со сметой и фото. Остальные карточки готовы к публикации реальных объектов.</p></div></div>
     <div className="directions-viewport" ref={viewportRef} onScroll={maintainLoop} aria-label="Бесконечный слайдер направлений работ">
-      <div className="directions-track">{cards.map((item, index) => <button className="direction-card" type="button" key={`${item.number}-${index}`} ref={index === directions.length ? cardRef : undefined} onClick={() => navigate(`/cases/${item.number}`)} aria-label={`Открыть кейс: ${item.title}`}>
-        <div className="direction-card__image"><img src={engineeringConcept} alt="" draggable={false} /><span>ЗАГЛУШКА</span><b>{item.number}</b></div>
+      <div className="directions-track">{cards.map((item, index) => <button className={`direction-card${item.status === 'demo' ? ' direction-card--demo' : ''}`} type="button" key={`${item.number}-${index}`} ref={index === directions.length ? cardRef : undefined} onClick={() => navigate(`/cases/${item.number}`)} aria-label={`Открыть кейс: ${item.title}`}>
+        <div className="direction-card__image"><img src={item.cover ?? engineeringConcept} alt="" draggable={false} loading="lazy" /><span>{item.status === 'demo' ? 'ДЕМО-КЕЙС · ИИ-ВИЗУАЛИЗАЦИЯ' : 'ЗАГЛУШКА'}</span><b>{item.number}</b></div>
         <div className="direction-card__copy"><h3>{item.title}</h3><p>{item.task}</p><span>Открыть карточку объекта</span></div>
       </button>)}</div>
     </div>

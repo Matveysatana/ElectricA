@@ -19,12 +19,6 @@ export const services: Service[] = [
   { title: 'Системы умного дома', description: 'Подготавливаю электрику под сценарии автоматизации после обсуждения проекта.', icon: Lightbulb }
 ]
 
-export const directions = Array.from({ length: 12 }, (_, index) => ({
-  number: String(index + 1).padStart(2, '0'),
-  title: `Направление работ ${String(index + 1).padStart(2, '0')}`,
-  task: 'Название, описание и материалы будут добавлены после согласования с заказчиком.'
-}))
-
 export const steps = [
   { number: '01', title: 'Звонок или заявка', description: 'Собираю исходные данные: объект, задачу, сроки и удобный способ связи.' },
   { number: '02', title: 'Консультация по телефону', description: 'Уточняю пожелания, особенности пространства и состав будущих работ.' },

@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react'
 import { ClipboardPenLine, FileText, Menu, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ActionButton } from '../ui/ActionButton'
+import { useLeadModal } from '../ui/LeadModal'
 import { scrollToSection } from '../../utils/navigation'
 
 const navigation = [['Услуги', 'services'], ['Об основателе', 'about'], ['Работы', 'portfolio'], ['Этапы', 'steps'], ['Контакты', 'contacts']]
 
 export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
   const [isOpen, setIsOpen] = useState(false)
+  const openLeadModal = useLeadModal()
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    document.body.classList.toggle('mobile-menu-open', isOpen)
+    return () => { document.body.classList.remove('mobile-menu-open') }
   }, [isOpen])
 
   const goTo = (id: string) => { setIsOpen(false); scrollToSection(id) }
@@ -27,7 +29,7 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
         <Link className={isPricesPage ? 'is-current' : ''} to="/prices">Прайс</Link>
       </nav>
       <div className="head-actions">
-        {isPricesPage ? <Link className="header-cta" to="/#contacts">Запросить смету <FileText size={16} /></Link> : <button className="header-cta" onClick={() => goTo('contacts')}>Обсудить проект <ClipboardPenLine size={16} /></button>}
+        {isPricesPage ? <button className="header-cta" onClick={() => openLeadModal('Запросить смету')}>Запросить смету <FileText size={16} /></button> : <button className="header-cta" onClick={() => openLeadModal('Обсудить проект')}>Обсудить проект <ClipboardPenLine size={16} /></button>}
         <button className="menu-button" aria-label="Открыть меню" aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
       </div>
     </div>
@@ -36,7 +38,7 @@ export function Header({ isPricesPage = false }: { isPricesPage?: boolean }) {
       <nav className="mobile-nav is-open" aria-label="Мобильная навигация">
         {isPricesPage ? <Link to="/" onClick={() => setIsOpen(false)}>На главную</Link> : navigation.map(([label, id]) => <button key={id} onClick={() => goTo(id)}>{label}</button>)}
         <Link to="/prices" onClick={() => setIsOpen(false)}>Стоимость работ</Link>
-        {isPricesPage ? <Link className="button button-primary" to="/#contacts" onClick={() => setIsOpen(false)}>Запросить смету<FileText size={18} /></Link> : <ActionButton onClick={() => goTo('contacts')} icon={<ClipboardPenLine size={17} />}>Обсудить проект</ActionButton>}
+        {isPricesPage ? <ActionButton onClick={() => { setIsOpen(false); openLeadModal('Запросить смету') }} icon={<FileText size={18} />}>Запросить смету</ActionButton> : <ActionButton onClick={() => { setIsOpen(false); openLeadModal('Обсудить проект') }} icon={<ClipboardPenLine size={17} />}>Обсудить проект</ActionButton>}
       </nav>
     </>}
   </header>

@@ -15,6 +15,7 @@ import { Process } from './components/sections/Process/Process'
 export default function App() {
   const location = useLocation()
   const isPricesPage = ['/price', '/prices'].includes(location.pathname)
+  const isDemoCase = location.pathname === '/cases/01'
   const isInnerPage = isPricesPage || location.pathname.startsWith('/cases/')
   const [hasCompletedIntro, setHasCompletedIntro] = useState(() => isInnerPage)
   const isLoading = !hasCompletedIntro
@@ -29,9 +30,9 @@ export default function App() {
   }, [isLoading])
 
   useEffect(() => {
-    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Электро Инжиниринг' : isInnerPage ? 'Карточка объекта — Электро Инжиниринг' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж в Москве'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Электро Инжиниринг. Точная стоимость согласуется после оценки задачи.' : isInnerPage ? 'Карточка будущего объекта Электро Инжиниринг.' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж под ключ в Москве.')
-  }, [isInnerPage, isPricesPage])
+    document.title = isPricesPage ? 'Стоимость электромонтажных работ — Электро Инжиниринг' : isDemoCase ? 'Электропроводка квартиры с нуля — демонстрационный кейс | Электро Инжиниринг' : isInnerPage ? 'Карточка объекта — Электро Инжиниринг' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж в Москве'
+    document.querySelector('meta[name="description"]')?.setAttribute('content', isPricesPage ? 'Прайс-лист Электро Инжиниринг. Точная стоимость согласуется после оценки задачи.' : isDemoCase ? 'Демонстрационный пример электромонтажа квартиры: этапы проводки с нуля, 8 ИИ-визуализаций и условная смета. Не реальный объект и не прайс.' : isInnerPage ? 'Карточка будущего объекта Электро Инжиниринг.' : 'Электро Инжиниринг — срочный ремонт электрики и электромонтаж под ключ в Москве.')
+  }, [isDemoCase, isInnerPage, isPricesPage])
 
   useEffect(() => {
     const targetId = location.hash.replace('#', '')

@@ -19,6 +19,7 @@
 .direction-card__image { position: relative; height: 242px; overflow: hidden; }
 .direction-card__image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 18, 20, .08), rgba(16, 18, 20, .75)); }
 .direction-card__image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.5) contrast(1.1); pointer-events: none; }
+.direction-card--demo .direction-card__image img { filter: none; }
 .direction-card__image span, .direction-card__image b { position: absolute; z-index: 1; font: 500 10px/1.3 'IBM Plex Mono', monospace; letter-spacing: .09em; }
 .direction-card__image span { left: 17px; bottom: 16px; color: rgba(233, 233, 228, .86); }
 .direction-card__image b { top: 16px; right: 16px; color: var(--signal); }

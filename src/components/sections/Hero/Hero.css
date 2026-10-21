@@ -66,6 +66,29 @@
   }
 }
 
+@media (min-width: 801px) and (max-width: 1180px) {
+  .hero { min-height: 0; }
+  .hero-frame {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+    gap: 34px;
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+  .hero-content { grid-column: 1; grid-row: 1; max-width: 920px; padding: 0; }
+  .hero-content h1 { max-width: 900px; font-size: clamp(48px, 6.1vw, 70px); }
+  .hero-copy { max-width: 750px; font-size: 18px; }
+  .hero-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: clamp(420px, 55vw, 620px);
+    margin: 0;
+    align-self: start;
+  }
+}
+
 @media (max-width: 800px) {
   .brand {
     font-size: 10px;
